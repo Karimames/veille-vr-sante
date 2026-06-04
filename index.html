@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille — La réalité virtuelle dans la formation des professionnels de santé</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  /* ─── RESET & VARIABLES ─────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1A3A5C;
+    --teal:   #028090;
+    --teal2:  #02C39A;
+    --gold:   #E8A838;
+    --light:  #F0F6FA;
+    --white:  #FFFFFF;
+    --gray:   #4A5A6A;
+    --ltgray: #D8E4EC;
+    --red:    #C05020;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    color: var(--gray);
+    background: var(--white);
+    line-height: 1.75;
+  }
+
+  /* ─── NAVIGATION ─────────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 54px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.6rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--ltgray);
+    text-decoration: none;
+    font-size: .8rem;
+    font-weight: 400;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ───────────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d2340 60%, #023a50 100%);
+    color: var(--white);
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(2,128,144,.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,168,56,.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .28rem .9rem;
+    border-radius: 2px;
+    margin-bottom: 1.4rem;
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: .9rem;
+    color: var(--white);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--ltgray);
+    max-width: 640px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    font-size: .82rem;
+    color: #8aa8c0;
+  }
+
+  .hero-meta span { display: flex; align-items: center; gap: .4rem; }
+
+  .ia-notice {
+    margin-top: 2rem;
+    background: rgba(232,168,56,.12);
+    border-left: 3px solid var(--gold);
+    padding: .9rem 1.2rem;
+    border-radius: 0 6px 6px 0;
+    font-size: .85rem;
+    color: #c8d8e4;
+    max-width: 700px;
+  }
+
+  .ia-notice strong { color: var(--gold); }
+
+  /* ─── SECTIONS ───────────────────────────────────────────────── */
+  section { padding: 4rem 2rem; }
+  section:nth-child(even) { background: var(--light); }
+
+  .section-inner { max-width: 900px; margin: 0 auto; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--teal);
+    opacity: .35;
+    line-height: 1;
+    min-width: 2.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: .82rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: .3rem;
+  }
+
+  /* ─── CARDS ──────────────────────────────────────────────────── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.4rem;
+    margin-top: 1.6rem;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.4rem;
+    box-shadow: 0 2px 12px rgba(26,58,92,.08);
+    border-top: 3px solid var(--teal);
+    transition: transform .2s, box-shadow .2s;
+  }
+
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,58,92,.13); }
+  .card.gold-top { border-top-color: var(--gold); }
+  .card.red-top  { border-top-color: var(--red); }
+
+  .card-icon {
+    font-size: 1.5rem;
+    margin-bottom: .7rem;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: .5rem;
+    font-weight: 700;
+  }
+
+  .card p { font-size: .88rem; line-height: 1.65; }
+
+  /* ─── CATEGORY BLOCKS ────────────────────────────────────────── */
+  .cat-block {
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(26,58,92,.08);
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .cat-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+  }
+
+  .cat-header.teal   { background: var(--teal); }
+  .cat-header.teal2  { background: #02A09A; }
+  .cat-header.gold   { background: var(--gold); }
+  .cat-header.gold .cat-label { color: var(--navy); }
+  .cat-header.gold .cat-type  { color: var(--navy); opacity: .7; }
+
+  .cat-icon { font-size: 1.4rem; }
+
+  .cat-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .cat-type {
+    font-size: .75rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.65);
+    font-weight: 600;
+  }
+
+  .cat-body { padding: 1.4rem 1.5rem; }
+
+  /* ─── SOURCE ITEMS ───────────────────────────────────────────── */
+  .source-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+
+  .source-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: .85rem 1rem;
+    background: var(--light);
+    border-radius: 6px;
+    transition: background .2s;
+  }
+
+  .source-item:hover { background: #dceef8; }
+
+  .source-badge {
+    background: var(--navy);
+    color: var(--white);
+    font-size: .67rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: .22rem .55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+
+  .source-badge.teal  { background: var(--teal); }
+  .source-badge.gold  { background: var(--gold); color: var(--navy); }
+  .source-badge.red   { background: var(--red); }
+
+  .source-content { flex: 1; }
+
+  .source-content strong {
+    display: block;
+    color: var(--navy);
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: .18rem;
+  }
+
+  .source-content p { font-size: .82rem; line-height: 1.55; margin-bottom: .3rem; }
+
+  .source-content a {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    color: var(--teal);
+    font-size: .78rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s, color .2s;
+    word-break: break-all;
+  }
+
+  .source-content a:hover { color: var(--navy); border-bottom-color: var(--teal); }
+  .source-content a::before { content: '↗'; font-size: .75rem; }
+
+  /* ─── OUTILS ─────────────────────────────────────────────────── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+
+  .tool-pill {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 2px 10px rgba(26,58,92,.07);
+    border-left: 4px solid var(--teal);
+  }
+
+  .tool-pill.push { border-left-color: var(--gold); }
+  .tool-pill.curation { border-left-color: var(--teal2); }
+
+  .tool-pill-type {
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: .3rem;
+  }
+
+  .tool-pill.push .tool-pill-type { color: var(--gold); }
+  .tool-pill.curation .tool-pill-type { color: var(--teal2); }
+
+  .tool-pill-name {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: .92rem;
+    margin-bottom: .25rem;
+  }
+
+  .tool-pill p { font-size: .8rem; line-height: 1.55; }
+
+  .tool-pill a {
+    font-size: .78rem;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: .5rem;
+  }
+
+  .tool-pill a:hover { text-decoration: underline; }
+
+  /* ─── ANALYSE 3 COLS ─────────────────────────────────────────── */
+  .analyse-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 1.4rem;
+  }
+
+  @media (max-width: 700px) { .analyse-grid { grid-template-columns: 1fr; } }
+
+  .analyse-col {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(26,58,92,.08);
+  }
+
+  .analyse-head {
+    padding: .75rem 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .analyse-head.apports  { background: var(--teal); }
+  .analyse-head.limites  { background: var(--red); }
+  .analyse-head.persp    { background: var(--gold); color: var(--navy); }
+
+  .analyse-items { background: var(--white); padding: .8rem 1rem; }
+
+  .analyse-items li {
+    list-style: none;
+    font-size: .86rem;
+    padding: .5rem 0;
+    border-bottom: 1px solid var(--light);
+    display: flex;
+    gap: .5rem;
+  }
+
+  .analyse-items li:last-child { border-bottom: none; }
+  .analyse-items li::before { content: '—'; color: var(--teal); flex-shrink: 0; }
+  .analyse-col:nth-child(2) .analyse-items li::before { color: var(--red); }
+  .analyse-col:nth-child(3) .analyse-items li::before { color: var(--gold); }
+
+  /* ─── POURSUITE VEILLE ───────────────────────────────────────── */
+  .poursuivre-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.4rem;
+  }
+
+  .poursuivre-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.3rem;
+    box-shadow: 0 2px 12px rgba(26,58,92,.08);
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+
+  .poursuivre-card .pc-type {
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  .poursuivre-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: .98rem;
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .poursuivre-card p { font-size: .83rem; line-height: 1.6; }
+
+  .poursuivre-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-size: .78rem;
+    font-weight: 600;
+    padding: .4rem .9rem;
+    border-radius: 4px;
+    align-self: flex-start;
+    transition: background .2s;
+  }
+
+  .poursuivre-card a:hover { background: var(--teal); }
+
+  /* ─── DÉFINITION ─────────────────────────────────────────────── */
+  .definition-box {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 2.2rem 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .definition-box::before {
+    content: '"';
+    position: absolute;
+    top: -1rem; left: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 9rem;
+    color: var(--teal);
+    opacity: .25;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .definition-box p {
+    font-size: 1.08rem;
+    font-style: italic;
+    line-height: 1.85;
+    color: #e0eaf4;
+    position: relative;
+  }
+
+  .definition-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+
+  @media (max-width: 600px) { .definition-pillars { grid-template-columns: 1fr; } }
+
+  .pillar {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    text-align: center;
+  }
+
+  .pillar-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+  .pillar h4 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: .95rem; margin-bottom: .4rem; }
+  .pillar p { font-size: .8rem; color: #a8c0d4; line-height: 1.55; }
+
+  /* ─── BIBLIOGRAPHIE ──────────────────────────────────────────── */
+  .bib-list { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.2rem; }
+
+  .bib-item {
+    background: var(--white);
+    border-left: 3px solid var(--teal);
+    padding: .7rem 1rem;
+    border-radius: 0 6px 6px 0;
+    font-size: .84rem;
+    line-height: 1.65;
+  }
+
+  .bib-item a { color: var(--teal); font-weight: 600; word-break: break-all; }
+  .bib-item a:hover { color: var(--navy); }
+
+  /* ─── FOOTER ─────────────────────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    color: #8aa8c0;
+    text-align: center;
+    padding: 2rem;
+    font-size: .8rem;
+    line-height: 1.8;
+  }
+
+  footer strong { color: var(--gold); }
+
+  /* ─── UTILITIES ──────────────────────────────────────────────── */
+  .tag {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-size: .7rem;
+    padding: .15rem .55rem;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    margin-right: .3rem;
+    margin-bottom: .3rem;
+  }
+
+  .tag.gold  { background: var(--gold); color: var(--navy); }
+  .tag.navy  { background: var(--navy); }
+  .tag.red   { background: var(--red); }
+
+  blockquote {
+    border-left: 3px solid var(--gold);
+    padding: .6rem 1.1rem;
+    margin: 1.2rem 0;
+    background: rgba(232,168,56,.07);
+    border-radius: 0 6px 6px 0;
+    font-size: .9rem;
+    font-style: italic;
+    color: var(--navy);
+  }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.2rem 0;
+  }
+
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+  }
+
+  .stat-box .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .stat-box .lbl { font-size: .75rem; color: #a8c0d4; margin-top: .3rem; line-height: 1.4; }
+
+  /* ─── ANIMATIONS ─────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-inner > * {
+    animation: fadeUp .6s ease both;
+  }
+
+  .hero-inner > *:nth-child(1) { animation-delay: .05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: .15s; }
+  .hero-inner > *:nth-child(3) { animation-delay: .25s; }
+  .hero-inner > *:nth-child(4) { animation-delay: .35s; }
+  .hero-inner > *:nth-child(5) { animation-delay: .45s; }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ──────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-logo">Veille · VR &amp; Formation Santé</span>
+  <ul class="nav-links">
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#methodo">Méthodo</a></li>
+    <li><a href="#resultats">Résultats</a></li>
+    <li><a href="#analyse">Analyse</a></li>
+    <li><a href="#poursuivre">Poursuivre</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Veille professionnelle · Ingénierie de la formation</span>
+    <h1>La réalité virtuelle dans la formation<br>des professionnels de santé :<br><em>quels apports pour les compétences cliniques ?</em></h1>
+    <p class="hero-sub">Veille organisée selon quatre catégories, avec sources vérifiables et liens hypertexte. Travail individuel — Semaine 3.</p>
+    <div class="hero-meta">
+      <span>🎓 Master 2 Sciences de l'Éducation et de la Formation</span>
+      <span>🏛️ Université de Caen · Université des Mascareignes · 2025/26</span>
+      <span>📅 Juin 2026</span>
+    </div>
+    <div class="ia-notice">
+      <strong>Recours à l'IA générative :</strong> Ce travail a été réalisé avec l'appui de Claude Sonnet (Anthropic) pour la recherche documentaire, la structuration des sections et la rédaction académique. Toutes les sources ont été vérifiées manuellement sur les sites originaux. La définition personnelle de la veille, l'analyse critique et le choix du sujet sont le fruit d'une démarche réflexive personnelle.
+    </div>
+  </div>
+</header>
+
+<!-- ── 01 INTRODUCTION ─────────────────────────────────────────── -->
+<section id="intro">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <p class="section-subtitle">Présentation du sujet</p>
+        <h2 class="section-title">Introduction et enjeux</h2>
+      </div>
+    </div>
+
+    <p>Le champ de l'ingénierie de la formation traverse une transformation profonde sous l'effet conjugué du numérique, de l'évolution des publics apprenants et des exigences croissantes en matière de qualité des dispositifs. La réalité virtuelle s'impose progressivement comme un objet de réflexion central pour les professionnels de la formation.</p>
+
+    <div class="stat-row" style="margin-top:1.8rem;">
+      <div class="stat-box"><div class="num">609 M$</div><div class="lbl">Marché mondial VR formation santé en 2025</div></div>
+      <div class="stat-box"><div class="num">2,9 Mds$</div><div class="lbl">Projection 2035 · +16,6 %/an</div></div>
+      <div class="stat-box"><div class="num">60 %+</div><div class="lbl">des facultés de médecine mondiales intègrent la VR (2023)</div></div>
+      <div class="stat-box"><div class="num">+1 300</div><div class="lbl">apprenants formés via VR · Institut 4.10 · 2025</div></div>
+    </div>
+
+    <blockquote style="margin-top:1.8rem;">
+      « La réalité virtuelle n'est plus un objet expérimental réservé aux laboratoires de recherche. Son inscription dans le guide de bonnes pratiques de la HAS (2024) et dans le référentiel infirmier (arrêté du 20 février 2026) en fait désormais une modalité pédagogique reconnue institutionnellement. »
+    </blockquote>
+
+    <p style="margin-top:1rem;">Cette veille répond également à une obligation professionnelle : le référentiel Qualiopi (version du 8 janvier 2024), en son <strong>critère 6, indicateur 25</strong>, impose à tout organisme de formation de réaliser une veille sur les innovations pédagogiques et technologiques et d'en exploiter les enseignements.</p>
+  </div>
+</section>
+
+<!-- ── 02 MÉTHODOLOGIE ─────────────────────────────────────────── -->
+<section id="methodo">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <p class="section-subtitle">Démarche</p>
+        <h2 class="section-title">Méthodologie de la veille</h2>
+      </div>
+    </div>
+
+    <p>Cette veille s'appuie sur le cadre méthodologique proposé par <strong>Étienne et Gutnik (2019)</strong> et sur les ressources pédagogiques de la Bibliothèque universitaire de l'Université de Rennes 2. Six étapes ont structuré la démarche : analyser les besoins, définir le périmètre, identifier les sources, collecter (pull et push), traiter et analyser, diffuser.</p>
+
+    <h3 style="margin:1.8rem 0 .8rem; font-family:'Playfair Display',serif; color:var(--navy); font-size:1.1rem;">Les quatre catégories de veille retenues</h3>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Veille réglementaire et institutionnelle</h3>
+        <p>Surveillance des textes officiels (Légifrance), des publications HAS, des arrêtés relatifs aux formations de santé et du référentiel Qualiopi.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔬</div>
+        <h3>Veille scientifique et technologique</h3>
+        <p>Surveillance des publications sur Cairn, PubMed, HAL, Google Scholar et les actes de congrès (SoFraSimS).</p>
+      </div>
+      <div class="card gold-top">
+        <div class="card-icon">🏥</div>
+        <h3>Veille sectorielle et professionnelle</h3>
+        <p>Surveillance des acteurs du marché, retours d'expérience, salons professionnels (Learning Technologies), Cap Métiers.</p>
+      </div>
+      <div class="card gold-top">
+        <div class="card-icon">🧠</div>
+        <h3>Veille pédagogique</h3>
+        <p>Surveillance des innovations en conception de scénarios, débriefing, transfert d'apprentissage et simulation interprofessionnelle.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:2rem 0 .8rem; font-family:'Playfair Display',serif; color:var(--navy); font-size:1.1rem;">Outils utilisés — logique Pull et Push</h3>
+
+    <div class="tools-grid">
+      <div class="tool-pill">
+        <span class="tool-pill-type">Pull — recherche active</span>
+        <span class="tool-pill-name">Cairn</span>
+        <p>Recherche manuelle dans les revues scientifiques francophones en sciences de l'éducation et formation.</p>
+        <a href="https://www.cairn.info" target="_blank" rel="noopener">cairn.info</a>
+      </div>
+      <div class="tool-pill">
+        <span class="tool-pill-type">Pull — recherche active</span>
+        <span class="tool-pill-name">PubMed / Google Scholar</span>
+        <p>Recherche de publications internationales sur la VR en formation de santé.</p>
+        <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov</a>
+      </div>
+      <div class="tool-pill">
+        <span class="tool-pill-type">Pull — recherche active</span>
+        <span class="tool-pill-name">HAL Science Ouverte</span>
+        <p>Thèses et publications en accès libre, notamment le projet EVAGO (Nantes).</p>
+        <a href="https://hal.science" target="_blank" rel="noopener">hal.science</a>
+      </div>
+      <div class="tool-pill">
+        <span class="tool-pill-type">Pull — recherche active</span>
+        <span class="tool-pill-name">Légifrance</span>
+        <p>Textes réglementaires officiels : arrêtés, décrets relatifs aux formations de santé.</p>
+        <a href="https://www.legifrance.gouv.fr" target="_blank" rel="noopener">legifrance.gouv.fr</a>
+      </div>
+      <div class="tool-pill push">
+        <span class="tool-pill-type">Push — automatisé</span>
+        <span class="tool-pill-name">Google Alertes</span>
+        <p>Alertes sur « réalité virtuelle formation santé », « simulation numérique HAS », « VR health education 2026 ».</p>
+        <a href="https://www.google.fr/alerts" target="_blank" rel="noopener">google.fr/alerts</a>
+      </div>
+      <div class="tool-pill push">
+        <span class="tool-pill-type">Push — automatisé</span>
+        <span class="tool-pill-name">Flux RSS Cairn</span>
+        <p>Abonnement aux sommaires des revues <em>Travail et Apprentissages</em> et <em>Savoirs</em>.</p>
+        <a href="https://aide.cairn.info/article/144-comment-suivre-une-revue" target="_blank" rel="noopener">Tuto suivi Cairn</a>
+      </div>
+      <div class="tool-pill push">
+        <span class="tool-pill-type">Push — automatisé</span>
+        <span class="tool-pill-name">Newsletter Centre Inffo</span>
+        <p>Actualité hebdomadaire de la formation professionnelle en France.</p>
+        <a href="https://www.centre-inffo.fr" target="_blank" rel="noopener">centre-inffo.fr</a>
+      </div>
+      <div class="tool-pill curation">
+        <span class="tool-pill-type">Curation &amp; diffusion</span>
+        <span class="tool-pill-name">Scoop.it</span>
+        <p>Agrégation et éditorialisation des ressources collectées, organisées par catégorie de veille.</p>
+        <a href="https://www.scoop.it" target="_blank" rel="noopener">scoop.it</a>
+      </div>
+    </div>
+
+    <h3 style="margin:2rem 0 .8rem; font-family:'Playfair Display',serif; color:var(--navy); font-size:1.1rem;">Critères de sélection des sources</h3>
+    <div class="cards">
+      <div class="card"><h3>Fiabilité</h3><p>Source identifiée (auteur, institution, revue à comité de lecture). Sources anonymes ou purement commerciales écartées.</p></div>
+      <div class="card"><h3>Pertinence</h3><p>Traitement direct de la VR ou simulation numérique dans un contexte de formation professionnelle ou continue en santé.</p></div>
+      <div class="card"><h3>Fraîcheur</h3><p>Priorité aux publications 2023-2026. Sources antérieures conservées si elles constituent des références fondatrices (ex. Barbe &amp; Boboc, 2022).</p></div>
+      <div class="card"><h3>Accessibilité</h3><p>Sources accessibles en accès libre ou via les ressources universitaires, pour garantir la reproductibilité de la veille.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 RÉSULTATS ─────────────────────────────────────────────── -->
+<section id="resultats">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <p class="section-subtitle">Sources avec liens</p>
+        <h2 class="section-title">Résultats de la veille</h2>
+      </div>
+    </div>
+
+    <!-- RÉGLEMENTAIRE -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <span class="cat-icon">📋</span>
+        <div>
+          <div class="cat-type">Catégorie 1</div>
+          <div class="cat-label">Veille réglementaire et institutionnelle</div>
+        </div>
+      </div>
+      <div class="cat-body">
+        <ul class="source-list">
+          <li class="source-item">
+            <span class="source-badge">HAS 2024</span>
+            <div class="source-content">
+              <strong>Guide de bonnes pratiques en matière de simulation en santé (mise à jour mars 2024)</strong>
+              <p>Première version depuis 2012 à intégrer un chapitre entier sur la <strong>simulation numérique</strong>, avec cahier des charges des applications, critères de qualité des scénarios et cadre éthique pour éviter des dérives pédagogiques. Réalisé en collaboration avec la SoFraSimS.</p>
+              <a href="https://www.has-sante.fr/jcms/p_3505883/fr/bonnes-pratiques-en-matiere-de-simulation-en-sante" target="_blank" rel="noopener">has-sante.fr — Guide complet</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge">JORF 2026</span>
+            <div class="source-content">
+              <strong>Arrêté du 20 février 2026 relatif au diplôme d'État d'infirmier</strong>
+              <p>Nouveau référentiel de formation infirmier (entrée en vigueur septembre 2026) : 4 620 h de formation sur 3 ans. La simulation en santé, le e-learning et l'escape-game pédagogique sont <strong>explicitement inscrits</strong> parmi les méthodes pédagogiques reconnues.</p>
+              <a href="https://www.legifrance.gouv.fr" target="_blank" rel="noopener">legifrance.gouv.fr — Textes officiels</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge gold">Qualiopi</span>
+            <div class="source-content">
+              <strong>Référentiel national qualité Qualiopi — Critère 6, indicateurs 23 à 25 (version du 8 janvier 2024)</strong>
+              <p>L'indicateur 25 impose à tout prestataire de formation de réaliser une <strong>veille sur les innovations pédagogiques et technologiques</strong> et d'en exploiter les enseignements. La non-exploitation de la veille constitue une non-conformité mineure lors de l'audit.</p>
+              <a href="https://travail-emploi.gouv.fr/referentiel-national-qualite-guide-de-lecture-qualiopi" target="_blank" rel="noopener">travail-emploi.gouv.fr — Guide Qualiopi</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge">DNS 2023</span>
+            <div class="source-content">
+              <strong>Feuille de route 2023-2027 de la Délégation ministérielle au numérique en santé</strong>
+              <p>Objectif : former 500 000 étudiants en santé et 10 % des professionnels de santé en activité au numérique d'ici 2027. La VR figure parmi les outils prioritaires.</p>
+              <a href="https://esante.gouv.fr" target="_blank" rel="noopener">esante.gouv.fr — Numérique en santé</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SCIENTIFIQUE -->
+    <div class="cat-block" style="margin-top:1.5rem;">
+      <div class="cat-header teal">
+        <span class="cat-icon">🔬</span>
+        <div>
+          <div class="cat-type">Catégorie 2</div>
+          <div class="cat-label">Veille scientifique et technologique</div>
+        </div>
+      </div>
+      <div class="cat-body">
+        <ul class="source-list">
+          <li class="source-item">
+            <span class="source-badge teal">ANR EVAGO</span>
+            <div class="source-content">
+              <strong>Projet ANR EVAGO — Environnement Virtuel pour l'Apprentissage du Geste en Odontologie (2022-2025)</strong>
+              <p>Consortium pluridisciplinaire (LIUM, CREN, RMeS, entreprise HRV). Résultats : intégration du simulateur <em>Virteasy Dental</em> en 2e et 3e année à Nantes, discrimination des niveaux étudiants, dossier d'ingénierie pédagogique élaboré. Financé par l'ANR.</p>
+              <a href="https://evago-lium.univ-lemans.fr/" target="_blank" rel="noopener">evago-lium.univ-lemans.fr — Site du projet</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge teal">Thèse 2025</span>
+            <div class="source-content">
+              <strong>Loison, V. (2025). Apports de la réalité virtuelle pour l'apprentissage du geste en odontologie : modalités d'usage et d'appropriation d'un dispositif de simulation.</strong>
+              <p>Thèse de doctorat inscrite en Sciences de l'Information et de la Communication, Université de Nantes. Analyse les conditions pédagogiques, techniques et humaines du déploiement de la VR dans la formation des chirurgiens-dentistes.</p>
+              <a href="https://theses.hal.science/tel-05330480v1" target="_blank" rel="noopener">theses.hal.science — Thèse complète</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge teal">HAL 2025</span>
+            <div class="source-content">
+              <strong>Simulation numérique et immersion pour la formation en Odontologie (2025)</strong>
+              <p>Article en accès libre présentant les conditions pédagogiques, techniques et humaines de l'insertion d'un simulateur VR doté d'un bras haptique au sein d'une faculté dentaire française.</p>
+              <a href="https://hal.science/hal-05022027" target="_blank" rel="noopener">hal.science — Article complet</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge teal">PubMed 2023</span>
+            <div class="source-content">
+              <strong>Lie, S.S. et al. (2023). Implementation of Virtual Reality in Health Professions Education : Scoping Review. JMIR Serious Games.</strong>
+              <p>Revue systématique internationale identifiant les barrières et facilitateurs à l'implémentation de la VR dans la formation des professions de santé. Référencée PubMed.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov — Recherche VR health education</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge teal">Cairn 2022</span>
+            <div class="source-content">
+              <strong>Barbe, F. &amp; Boboc, A. (2022). La réalité virtuelle dans la formation professionnelle à la lumière des environnements capacitants. <em>Travail et Apprentissages</em>, 23, 116-129.</strong>
+              <p>Article de référence proposant d'analyser la VR comme « environnement capacitant » : un dispositif technologiquement sophistiqué ne développe le pouvoir d'agir de l'apprenant que si la conception pédagogique intègre analyse réflexive et débriefing structuré.</p>
+              <a href="https://www.cairn.info/revue-travail-et-apprentissages-2022-1-page-116.htm" target="_blank" rel="noopener">cairn.info — Article Barbe &amp; Boboc</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge teal">SoFraSimS 2025</span>
+            <div class="source-content">
+              <strong>12e congrès de la Société francophone de simulation en santé — Brest, juin 2024</strong>
+              <p>Communications sur la simulation numérique, le débriefing, la simulation interprofessionnelle et les nouvelles recommandations HAS. Compte-rendu publié dans <em>Risques et Qualité en milieu de soins</em> sur Cairn, mai 2025.</p>
+              <a href="https://www.sofrasims.org" target="_blank" rel="noopener">sofrasims.org — Société francophone de simulation en santé</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTORIELLE -->
+    <div class="cat-block" style="margin-top:1.5rem;">
+      <div class="cat-header teal2">
+        <span class="cat-icon">🏥</span>
+        <div>
+          <div class="cat-type">Catégorie 3</div>
+          <div class="cat-label">Veille sectorielle et professionnelle</div>
+        </div>
+      </div>
+      <div class="cat-body">
+        <ul class="source-list">
+          <li class="source-item">
+            <span class="source-badge">BIP 2026</span>
+            <div class="source-content">
+              <strong>Enrico, V. (2026). Retour sur le BIP "Virtual Classroom, Virtual Field Trips, and VR in Education" — Université de Pilsen, République Tchèque.</strong>
+              <p>Compte-rendu de 5 jours d'échanges sur la VR en formation enseignante dans le cadre de l'alliance EU Peace. Documente des expériences concrètes : salle de classe virtuelle avec avatars, scénarios de communication difficile pour psychologues, chatbot pédagogique IA. Université de Caen, avril 2026.</p>
+              <a href="https://www.eupeace.eu" target="_blank" rel="noopener">eupeace.eu — Alliance EU Peace</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge">Institut 4.10</span>
+            <div class="source-content">
+              <strong>Institut 4.10 (2026). Bilan formation VR 2025 : plus de 1 300 apprenants, satisfaction &gt; 8,5/10, objectifs atteints dans ~90 % des cas.</strong>
+              <p>Retour d'expérience d'un organisme de formation professionnel français ayant intégré la VR dans ses dispositifs. Confirme la maturité pédagogique de ces outils dans le contexte français.</p>
+              <a href="https://www.institutquatredix.fr" target="_blank" rel="noopener">institutquatredix.fr</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge">Forrester 2025</span>
+            <div class="source-content">
+              <strong>Meta for Work / Forrester Consulting (avril 2025). Comment la VR transforme le domaine de la santé.</strong>
+              <p>69 % des leaders du secteur de la santé prévoient d'accroître leur utilisation de la VR d'ici 2027. Enquête conduite auprès de décideurs en santé dans plusieurs pays.</p>
+              <a href="https://forwork.meta.com/fr/vr-in-healthcare/" target="_blank" rel="noopener">forwork.meta.com — VR in Healthcare</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge">Cap Métiers</span>
+            <div class="source-content">
+              <strong>Cap Métiers Nouvelle-Aquitaine — 5es Journées Vincent Merle, mars 2026 : "Former, enseigner et apprendre dans le monde des IA"</strong>
+              <p>Table ronde sur les usages de l'IA et du numérique par les organismes de formation. L'impact environnemental du numérique (Olivier Michel, UPEC) et la question du "slop IA" (Éric Bruillard) y sont traités.</p>
+              <a href="https://www.cap-metiers.fr" target="_blank" rel="noopener">cap-metiers.fr — Actualités Cap Métiers</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PÉDAGOGIQUE -->
+    <div class="cat-block" style="margin-top:1.5rem;">
+      <div class="cat-header gold">
+        <span class="cat-icon">🧠</span>
+        <div>
+          <div class="cat-type">Catégorie 4</div>
+          <div class="cat-label">Veille pédagogique</div>
+        </div>
+      </div>
+      <div class="cat-body">
+        <ul class="source-list">
+          <li class="source-item">
+            <span class="source-badge gold">HAS 2024</span>
+            <div class="source-content">
+              <strong>HAS (2024) — Le débriefing comme étape pédagogique centrale de tout dispositif de simulation</strong>
+              <p>Le guide insiste sur le fait que la simulation ne peut constituer une méthode pédagogique efficace que si elle s'inscrit dans un programme structuré incluant objectifs précis, préparation des apprenants et <strong>débriefing formalisé</strong>. Sans débriefing, la simulation n'est qu'une activité d'exposition.</p>
+              <a href="https://www.has-sante.fr/upload/docs/application/pdf/2024-04/spa_181_guide_bonnes_pratiques_simulation_sante_cd_2024_03_28.pdf" target="_blank" rel="noopener">has-sante.fr — Guide PDF complet</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge gold">Cairn 2022</span>
+            <div class="source-content">
+              <strong>Barbe &amp; Boboc (2022) — La VR comme "environnement capacitant"</strong>
+              <p>Cadre théorique issu du concept d'environnements capacitants : la VR ne développe réellement les compétences que si elle s'intègre dans un dispositif pédagogique favorisant l'analyse réflexive, le transfert progressif et l'autonomisation de l'apprenant.</p>
+              <a href="https://www.cairn.info/revue-travail-et-apprentissages-2022-1-page-116.htm" target="_blank" rel="noopener">cairn.info — Travail et Apprentissages</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge gold">Edustories 2026</span>
+            <div class="source-content">
+              <strong>Edustories.cz — Plateforme de chatbot pédagogique pour la gestion de situations difficiles en classe</strong>
+              <p>Développée à l'Université de Bohême de l'Ouest, cette plateforme combine des scénarios réels rapportés par des enseignants avec un assistant IA qui évalue les réponses de l'apprenant sur la base de données probantes. Modèle directement transférable à la formation des professionnels de santé.</p>
+              <a href="https://edustories.cz/en" target="_blank" rel="noopener">edustories.cz — Plateforme de simulation</a>
+            </div>
+          </li>
+          <li class="source-item">
+            <span class="source-badge gold">Campus Matin</span>
+            <div class="source-content">
+              <strong>Campus Matin (juin 2024) — Numérique et VR : quels défis pour la formation en santé ?</strong>
+              <p>Reportage sur l'intégration de la réalité mixte dans la formation médicale française. Les utilisateurs rapportent une baisse de la charge mentale, l'information n'ayant plus besoin d'être mémorisée. Objectif DNS : former 500 000 étudiants en santé au numérique d'ici 2027.</p>
+              <a href="https://www.campusmatin.com/numerique/pedagogie/pratiques/numerique-et-vr-quels-defis-pour-la-formation-en-sante.html" target="_blank" rel="noopener">campusmatin.com — Article complet</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 ANALYSE ───────────────────────────────────────────────── -->
+<section id="analyse">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <p class="section-subtitle">Regard critique</p>
+        <h2 class="section-title">Analyse des résultats</h2>
+      </div>
+    </div>
+
+    <div class="analyse-grid">
+      <div class="analyse-col">
+        <div class="analyse-head apports">✓ Apports identifiés</div>
+        <ul class="analyse-items">
+          <li>Environnement standardisé et reproductible — mêmes conditions pour tous les apprenants</li>
+          <li>Droit à l'erreur sans risque patient — sécurité éthique de l'apprentissage</li>
+          <li>Accès à situations rares ou impossibles à reproduire en formation classique</li>
+          <li>Réduction de la charge mentale des professionnels de santé en formation continue</li>
+          <li>Discrimination des niveaux et prédiction des performances (projet EVAGO)</li>
+        </ul>
+      </div>
+      <div class="analyse-col">
+        <div class="analyse-head limites">⚠ Limites et obstacles</div>
+        <ul class="analyse-items">
+          <li>Coût élevé des équipements et logiciels — obstacle à l'adoption à grande échelle</li>
+          <li>Effets indésirables physiologiques : fatigue visuelle, nausées, vertiges (ANSES)</li>
+          <li>Transfert en situation clinique réelle non garanti par la seule maîtrise du simulateur</li>
+          <li>Fracture numérique — inégalité d'accès géographique et sociale</li>
+          <li>Manque de compétences des formateurs pour concevoir et animer les débriefings</li>
+        </ul>
+      </div>
+      <div class="analyse-col">
+        <div class="analyse-head persp">→ Perspectives</div>
+        <ul class="analyse-items">
+          <li>Intégrer la VR dans des dispositifs hybrides cohérents plutôt que comme outil isolé</li>
+          <li>Former les formateurs au débriefing immersif et à l'ingénierie de scénarios pédagogiques</li>
+          <li>Penser la sobriété numérique dans la conception des dispositifs (impact CO₂)</li>
+          <li>Développer la simulation interprofessionnelle pour construire des savoirs partagés</li>
+          <li>Intégrer l'IA générative pour enrichir les scénarios et réduire la dépendance à un opérateur</li>
+        </ul>
+      </div>
+    </div>
+
+    <blockquote style="margin-top:2rem;">
+      Selon Barbe &amp; Boboc (2022, <em>Travail et Apprentissages</em>), analyser la VR à la lumière du concept d'« environnements capacitants » déplace la question de la performance technique vers celle du développement professionnel durable. Un dispositif technologiquement sophistiqué ne développe pas nécessairement le pouvoir d'agir de l'apprenant si la conception pédagogique ne prévoit pas de modalités d'analyse réflexive.
+    </blockquote>
+  </div>
+</section>
+
+<!-- ── 05 POURSUIVRE LA VEILLE ──────────────────────────────────── -->
+<section id="poursuivre">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <p class="section-subtitle">Activités concrètes</p>
+        <h2 class="section-title">Propositions pour poursuivre la veille</h2>
+      </div>
+    </div>
+
+    <p style="margin-bottom:1.4rem;">Ces propositions sont concrètes, opérationnelles et directement activables. Chaque action est associée à un outil ou une ressource accessible.</p>
+
+    <div class="poursuivre-grid">
+      <div class="poursuivre-card">
+        <span class="pc-type">Push automatisé</span>
+        <h4>Créer une alerte Google Scholar</h4>
+        <p>Paramétrer une alerte sur les termes « réalité virtuelle formation santé » et « virtual reality health professions education » pour recevoir automatiquement les nouvelles publications scientifiques dès leur indexation.</p>
+        <a href="https://scholar.google.com/scholar_alerts" target="_blank" rel="noopener">↗ scholar.google.com/alerts</a>
+      </div>
+      <div class="poursuivre-card">
+        <span class="pc-type">Suivi de revue</span>
+        <h4>S'abonner aux flux RSS de Cairn</h4>
+        <p>Activer le suivi des revues <em>Travail et Apprentissages</em>, <em>Savoirs</em> et <em>Médiations &amp; médiatisations</em> pour recevoir les nouveaux sommaires dès publication.</p>
+        <a href="https://aide.cairn.info/article/144-comment-suivre-une-revue" target="_blank" rel="noopener">↗ Tuto suivi Cairn</a>
+      </div>
+      <div class="poursuivre-card">
+        <span class="pc-type">Congrès scientifique</span>
+        <h4>Suivre le congrès SoFraSimS 2025/2026</h4>
+        <p>La Société francophone de simulation en santé publie les actes de ses congrès sur Cairn et son site. Le 13e congrès permettra de suivre l'évolution des pratiques et des recommandations.</p>
+        <a href="https://www.sofrasims.org" target="_blank" rel="noopener">↗ sofrasims.org</a>
+      </div>
+      <div class="poursuivre-card">
+        <span class="pc-type">Veille réglementaire</span>
+        <h4>Suivre les publications France Compétences</h4>
+        <p>France Compétences publie régulièrement des études sur l'évolution des compétences et des certifications. Le Vademecum RNCP/RS de janvier 2026 est à surveiller pour ses mises à jour.</p>
+        <a href="https://www.francecompetences.fr" target="_blank" rel="noopener">↗ francecompetences.fr</a>
+      </div>
+      <div class="poursuivre-card">
+        <span class="pc-type">Curation collaborative</span>
+        <h4>Créer un espace Scoop.it partagé</h4>
+        <p>Ouvrir un topic Scoop.it dédié à la VR en formation de santé, partagé avec d'autres professionnels de la formation. La curation collaborative permet d'enrichir la veille et de la diffuser auprès d'une communauté apprenante.</p>
+        <a href="https://www.scoop.it" target="_blank" rel="noopener">↗ scoop.it</a>
+      </div>
+      <div class="poursuivre-card">
+        <span class="pc-type">Réseau scientifique</span>
+        <h4>Suivre le projet EVAGO sur HAL</h4>
+        <p>Les chercheurs du projet EVAGO (Loison, George, Hamon) déposent régulièrement leurs publications sur HAL en accès libre. Paramétrer une alerte HAL sur « EVAGO » ou « Virteasy » pour suivre les nouvelles publications.</p>
+        <a href="https://hal.science/search/index/?q=EVAGO+odontologie" target="_blank" rel="noopener">↗ Recherche HAL EVAGO</a>
+      </div>
+      <div class="poursuivre-card">
+        <span class="pc-type">Veille sectorielle</span>
+        <h4>S'inscrire à la newsletter Centre Inffo</h4>
+        <p>Centre Inffo est l'opérateur public de référence pour l'information sur la formation professionnelle en France. Sa newsletter hebdomadaire couvre les actualités réglementaires et pédagogiques.</p>
+        <a href="https://www.centre-inffo.fr/abonnement-newsletter" target="_blank" rel="noopener">↗ centre-inffo.fr</a>
+      </div>
+      <div class="poursuivre-card">
+        <span class="pc-type">Événement professionnel</span>
+        <h4>Salon Learning Technologies France</h4>
+        <p>Salon professionnel annuel dédié à la formation digitale, organisé à Paris. Permet d'identifier les nouveaux acteurs, les innovations et les retours d'expérience du marché français de la formation en santé.</p>
+        <a href="https://www.learningtechnologiesfrance.com" target="_blank" rel="noopener">↗ learningtechnologiesfrance.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 CONCLUSION ────────────────────────────────────────────── -->
+<section id="conclusion">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <p class="section-subtitle">Définition personnelle</p>
+        <h2 class="section-title">Conclusion</h2>
+      </div>
+    </div>
+
+    <p>Cette veille a traversé un champ en transformation rapide, à la frontière de l'ingénierie pédagogique, des sciences de l'éducation, des technologies numériques et des politiques de formation en santé. Elle confirme que la réalité virtuelle, lorsqu'elle est intégrée dans un dispositif pédagogique rigoureux incluant un débriefing structuré et une progression réflexive, constitue une modalité d'apprentissage à fort potentiel pour le développement des compétences cliniques.</p>
+
+    <p style="margin-top:.8rem;">Elle rappelle aussi les exigences d'un regard critique : les discours promotionnels des prestataires technologiques ne se substituent pas à des résultats empiriques vérifiables, et les obstacles économiques, physiologiques et organisationnels à une intégration équitable de ces dispositifs ne doivent pas être minorés.</p>
+
+    <div class="definition-box" style="margin-top:2rem;">
+      <p>La veille est un processus continu, itératif et critique de surveillance organisée d'un domaine professionnel, visant à collecter, sélectionner, analyser et diffuser des informations pertinentes afin d'anticiper les évolutions du champ, de soutenir la prise de décision en ingénierie de formation et de nourrir le développement professionnel du veilleur lui-même.</p>
+
+      <div class="definition-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🔄</div>
+          <h4>Continue et itérative</h4>
+          <p>Pas d'exhaustivité — pertinence et variété. Chaque source ouvre vers de nouvelles pistes. (Enrico, 2025/26)</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🔍</div>
+          <h4>Critique</h4>
+          <p>Distinguer données probantes et discours promotionnels. Adopter une posture de chercheur face à l'information.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🎓</div>
+          <h4>Développementale</h4>
+          <p>Espace de développement professionnel continu. La veille transforme celui qui la pratique.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIBLIOGRAPHIE -->
+    <h3 style="margin:2.5rem 0 1rem; font-family:'Playfair Display',serif; color:var(--navy); font-size:1.2rem;">Références bibliographiques</h3>
+
+    <div class="bib-list">
+      <div class="bib-item">Étienne, S. &amp; Gutnik, F. (2019). Plan d'action. Organiser sa veille avec les outils 2.0. Dans <em>Pro en Formation : 68 outils et 12 plans d'action métier</em> (pp. 20-23). Paris : Vuibert. <a href="https://ecampus-vert.unicaen.fr/pluginfile.php/595479/mod_resource/content/1/VUIB_ETIEN_2019_01_0020-3.pdf" target="_blank" rel="noopener">Extraits disponibles en ligne</a></div>
+      <div class="bib-item">Haute Autorité de Santé (2024). <em>Bonnes pratiques en matière de simulation en santé</em> (mise à jour mars 2024). has-sante.fr. <a href="https://www.has-sante.fr/jcms/p_3505883/fr/bonnes-pratiques-en-matiere-de-simulation-en-sante" target="_blank" rel="noopener">has-sante.fr</a></div>
+      <div class="bib-item">Loison, V. (2025). <em>Apports de la réalité virtuelle pour l'apprentissage du geste en odontologie : modalités d'usage et d'appropriation d'un dispositif de simulation</em>. Thèse de doctorat, Université de Nantes. <a href="https://theses.hal.science/tel-05330480v1" target="_blank" rel="noopener">theses.hal.science</a></div>
+      <div class="bib-item">Barbe, F. &amp; Boboc, A. (2022). La réalité virtuelle dans la formation professionnelle à la lumière des environnements capacitants. <em>Travail et Apprentissages</em>, 23, 116-129. <a href="https://www.cairn.info/revue-travail-et-apprentissages-2022-1-page-116.htm" target="_blank" rel="noopener">cairn.info</a></div>
+      <div class="bib-item">ANR — Projet EVAGO (2022-2025). Environnement Virtuel pour l'Apprentissage du Geste en Odontologie. <a href="https://evago-lium.univ-lemans.fr/" target="_blank" rel="noopener">evago-lium.univ-lemans.fr</a></div>
+      <div class="bib-item">Enrico, V. (2026). Retour sur le BIP "Virtual Classroom, Virtual Field Trips, and VR in Education". Université de Caen — Université des Mascareignes.</div>
+      <div class="bib-item">Ministère du Travail (2024). Référentiel national qualité Qualiopi, version du 8 janvier 2024, critère 6, indicateurs 23-25. <a href="https://travail-emploi.gouv.fr/referentiel-national-qualite-guide-de-lecture-qualiopi" target="_blank" rel="noopener">travail-emploi.gouv.fr</a></div>
+      <div class="bib-item">Bibliothèque universitaire de l'Université de Rennes 2. Organiser sa veille : pull &amp; push. <a href="https://tutos.bu.univ-rennes2.fr/c.php?g=688574&p=4927740" target="_blank" rel="noopener">tutos.bu.univ-rennes2.fr</a></div>
+    </div>
+
+    <div style="margin-top:2rem; padding:1rem 1.4rem; background:rgba(2,128,144,.08); border-radius:8px; font-size:.85rem; color:var(--navy);">
+      <span class="tag">IA générative</span> Ce site web a été produit avec l'appui de <strong>Claude Sonnet (Anthropic)</strong> pour la structuration, la rédaction académique et la mise en forme HTML. Les sources ont été vérifiées manuellement. La posture critique, la définition personnelle de la veille et les choix analytiques sont le fruit d'une réflexion personnelle dans le cadre du Master 2 Sciences de l'Éducation et de la Formation, Université de Caen, 2025/26.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>La réalité virtuelle dans la formation des professionnels de santé</strong><br>
+  Veille professionnelle en ingénierie de la formation · Master 2 SEF · Université de Caen · Juin 2026<br>
+  Cours « L'ingénierie de la formation à l'heure du numérique » · Vincent Enrico · 2025/26
+</footer>
+
+</body>
+</html>
+HTMLEOF
