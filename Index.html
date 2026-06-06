@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille — L'IA dans la formation des professionnels de santé</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & VARIABLES ────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:  #1A3A5C;
+  --teal:  #028090;
+  --gold:  #E8A838;
+  --light: #F4F8FB;
+  --white: #FFFFFF;
+  --gray:  #4A5A6A;
+  --line:  #D0DDE8;
+  --text:  #2C3E50;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.75;
+  font-size: 15px;
+}
+
+/* ─── NAV ──────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 52px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.2);
+}
+.nav-brand {
+  font-family: 'Lora', serif;
+  color: var(--gold); font-size: .9rem;
+  white-space: nowrap; letter-spacing: .02em;
+}
+.nav-links { display: flex; gap: .2rem; list-style: none; flex-wrap: wrap; }
+.nav-links a {
+  color: rgba(255,255,255,.7); text-decoration: none;
+  font-size: .72rem; font-weight: 500; letter-spacing: .06em;
+  text-transform: uppercase; padding: .3rem .55rem; border-radius: 3px;
+  transition: all .2s;
+}
+.nav-links a:hover { color: var(--white); background: rgba(255,255,255,.1); }
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(145deg, var(--navy) 0%, #0d2b45 55%, #024e5c 100%);
+  color: var(--white); padding: 4.5rem 2rem 3.5rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(2,128,144,.25) 0%, transparent 70%);
+  top: -150px; right: -100px; pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,168,56,.12) 0%, transparent 70%);
+  bottom: -80px; left: -60px; pointer-events: none;
+}
+.hero-inner { max-width: 820px; margin: 0 auto; position: relative; }
+.hero-tag {
+  display: inline-block; background: var(--teal);
+  color: var(--white); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; padding: .25rem .8rem; border-radius: 2px;
+  margin-bottom: 1.2rem; font-weight: 500;
+}
+.hero h1 {
+  font-family: 'Lora', serif; font-weight: 700;
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  line-height: 1.2; margin-bottom: .8rem; color: var(--white);
+}
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,.7); margin-bottom: 1.8rem; max-width: 580px; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: .6rem; }
+.meta-pill {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 20px; padding: .25rem .8rem;
+  font-size: .75rem; color: rgba(255,255,255,.75);
+}
+.ia-note {
+  margin-top: 2rem; padding: .9rem 1.2rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(232,168,56,.1);
+  border-radius: 0 6px 6px 0;
+  font-size: .82rem; color: rgba(255,255,255,.75);
+  max-width: 680px;
+}
+.ia-note strong { color: var(--gold); }
+
+/* ─── LAYOUT ───────────────────────────────────────────── */
+section { padding: 3.5rem 2rem; }
+section:nth-child(even) { background: var(--light); }
+.inner { max-width: 900px; margin: 0 auto; }
+
+/* ─── SECTION HEADERS ──────────────────────────────────── */
+.sec-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+.sec-num {
+  font-family: 'Lora', serif; font-size: 2.8rem; font-weight: 700;
+  color: var(--teal); opacity: .25; line-height: 1; min-width: 2.8rem;
+}
+.sec-titles { flex: 1; }
+.sec-label {
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--teal); font-weight: 500; margin-bottom: .2rem;
+}
+.sec-title {
+  font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700;
+  color: var(--navy); line-height: 1.25;
+}
+
+/* ─── BODY TEXT ─────────────────────────────────────────── */
+.prose { font-size: .93rem; line-height: 1.8; text-align: justify; margin-bottom: 1rem; color: var(--gray); }
+.prose + .prose { margin-top: .2rem; }
+
+/* ─── QUOTE ────────────────────────────────────────────── */
+blockquote {
+  border-left: 3px solid var(--gold); padding: .8rem 1.2rem;
+  margin: 1.4rem 0; background: rgba(232,168,56,.06);
+  border-radius: 0 6px 6px 0;
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: .95rem; color: var(--navy); line-height: 1.75;
+}
+
+/* ─── DIVIDER ──────────────────────────────────────────── */
+.sep { height: 1px; background: var(--line); margin: 2rem 0; }
+
+/* ─── MOTS-CLÉS TABLE ──────────────────────────────────── */
+.table-wrap { overflow-x: auto; margin: 1.2rem 0; border-radius: 8px; box-shadow: 0 2px 12px rgba(26,58,92,.07); }
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead tr { background: var(--teal); }
+thead th {
+  padding: .7rem .9rem; text-align: left;
+  color: var(--white); font-weight: 500; letter-spacing: .04em;
+  font-size: .75rem; text-transform: uppercase;
+}
+tbody tr:nth-child(odd) { background: var(--white); }
+tbody tr:nth-child(even) { background: var(--light); }
+tbody tr:hover { background: #dceef8; }
+tbody td { padding: .6rem .9rem; color: var(--gray); border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody td:first-child { font-weight: 500; color: var(--navy); }
+table.dark thead tr { background: var(--navy); }
+table.watch thead tr { background: var(--navy); }
+table.watch tbody td.cat-reg { border-left: 3px solid #e05c20; }
+table.watch tbody td.cat-sci { border-left: 3px solid var(--teal); }
+table.watch tbody td.cat-ped { border-left: 3px solid #028060; }
+table.watch tbody td.cat-pro { border-left: 3px solid var(--gold); }
+
+/* ─── PULL/PUSH TABLE ──────────────────────────────────── */
+.type-pull { background: var(--teal) !important; color: var(--white); font-weight: 600; text-align: center; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
+.type-push { background: var(--navy) !important; color: var(--white); font-weight: 600; text-align: center; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
+
+/* ─── SOURCE CARDS ─────────────────────────────────────── */
+.src-list { display: flex; flex-direction: column; gap: .8rem; margin: 1.2rem 0; }
+.src-card {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--white); border-radius: 8px;
+  padding: .9rem 1rem; box-shadow: 0 1px 8px rgba(26,58,92,.07);
+  transition: transform .2s, box-shadow .2s;
+}
+.src-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,58,92,.11); }
+.src-badge {
+  background: var(--navy); color: var(--white);
+  font-size: .62rem; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; padding: .2rem .5rem; border-radius: 3px;
+  white-space: nowrap; flex-shrink: 0; margin-top: .15rem;
+  align-self: flex-start;
+}
+.src-badge.teal { background: var(--teal); }
+.src-badge.gold { background: var(--gold); color: var(--navy); }
+.src-badge.green { background: #028060; }
+.src-content { flex: 1; }
+.src-content strong { display: block; color: var(--navy); font-size: .88rem; font-weight: 500; margin-bottom: .25rem; }
+.src-content p { font-size: .8rem; color: var(--gray); line-height: 1.6; margin-bottom: .3rem; }
+.src-link {
+  display: inline-flex; align-items: center; gap: .25rem;
+  color: var(--teal); font-size: .76rem; font-weight: 500;
+  text-decoration: none; border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.src-link:hover { border-bottom-color: var(--teal); }
+.src-link::before { content: '↗'; font-size: .7rem; }
+
+/* ─── SECTION 05 TABLE ─────────────────────────────────── */
+.poursuivre-table thead tr { background: var(--navy); }
+
+/* ─── SIGNALS ──────────────────────────────────────────── */
+.signals { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.2rem 0; }
+@media (max-width: 640px) { .signals { grid-template-columns: 1fr; } }
+.signal-box { border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(26,58,92,.07); }
+.signal-head { padding: .6rem 1rem; font-weight: 500; font-size: .85rem; color: var(--white); }
+.signal-head.fort { background: var(--teal); }
+.signal-head.faible { background: var(--gold); color: var(--navy); }
+.signal-items { background: var(--white); padding: .6rem 1rem; }
+.signal-items li {
+  list-style: none; font-size: .82rem; color: var(--gray);
+  padding: .4rem 0; border-bottom: 1px solid var(--line);
+  display: flex; gap: .5rem;
+}
+.signal-items li:last-child { border-bottom: none; }
+.signal-items li::before { content: '→'; color: var(--teal); flex-shrink: 0; font-weight: 500; }
+.signal-box:nth-child(2) .signal-items li::before { color: #c08020; }
+
+/* ─── IMPLICATIONS TABLE ───────────────────────────────── */
+.impl-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: .83rem; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(26,58,92,.07); }
+.impl-table th { background: var(--navy); color: var(--white); padding: .7rem 1rem; text-align: left; font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+.impl-table td { padding: .65rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.impl-table tr:nth-child(odd) td { background: var(--white); }
+.impl-table tr:nth-child(even) td { background: var(--light); }
+.impl-table td:first-child { font-weight: 500; color: var(--navy); width: 22%; }
+.impl-table tr:hover td { background: #dceef8; }
+
+/* ─── DIAGRAM ──────────────────────────────────────────── */
+.diagram { display: flex; flex-direction: column; align-items: stretch; gap: 0; margin: 1.4rem 0; max-width: 700px; }
+.diag-step { border-radius: 0; overflow: hidden; }
+.diag-step:first-child { border-radius: 8px 8px 0 0; }
+.diag-step:last-child { border-radius: 0 0 8px 8px; }
+.diag-head { padding: .6rem 1.1rem; font-weight: 500; font-size: .82rem; color: var(--white); }
+.diag-head.navy { background: var(--navy); }
+.diag-head.teal1 { background: #026878; }
+.diag-head.teal2 { background: var(--teal); }
+.diag-head.teal3 { background: #028878; }
+.diag-head.teal4 { background: #02A090; }
+.diag-head.gold  { background: var(--gold); color: var(--navy); }
+.diag-body { padding: .5rem 1.1rem .7rem; background: var(--light); font-size: .8rem; color: var(--gray); line-height: 1.65; }
+.diag-arrow { text-align: center; font-size: 1.1rem; color: var(--teal); padding: .15rem 0; background: var(--white); font-weight: 700; }
+
+/* ─── DEFINITION ───────────────────────────────────────── */
+.definition-box {
+  background: var(--navy); color: var(--white);
+  border-radius: 10px; padding: 2rem 2.2rem; margin: 1.5rem 0;
+  position: relative; overflow: hidden;
+}
+.definition-box::before {
+  content: '"'; position: absolute; top: -1.5rem; left: 1rem;
+  font-family: 'Lora', serif; font-size: 9rem;
+  color: var(--teal); opacity: .2; line-height: 1; pointer-events: none;
+}
+.definition-box p { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; line-height: 1.85; color: #ccdde8; position: relative; }
+.def-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.2rem; }
+@media (max-width: 580px) { .def-pillars { grid-template-columns: 1fr; } }
+.pillar { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 7px; padding: .9rem 1rem; }
+.pillar h4 { font-family: 'Lora', serif; color: var(--gold); font-size: .88rem; margin-bottom: .3rem; font-weight: 700; }
+.pillar p { font-size: .78rem; color: rgba(255,255,255,.65); line-height: 1.6; }
+
+/* ─── BIBLIOGRAPHY ─────────────────────────────────────── */
+.bib-list { display: flex; flex-direction: column; gap: .5rem; margin-top: 1.2rem; }
+.bib-item {
+  background: var(--white); border-left: 3px solid var(--teal);
+  padding: .6rem 1rem; border-radius: 0 6px 6px 0;
+  font-size: .8rem; line-height: 1.7; color: var(--gray);
+  box-shadow: 0 1px 4px rgba(26,58,92,.05);
+}
+.bib-item a { color: var(--teal); font-weight: 500; text-decoration: none; }
+.bib-item a:hover { text-decoration: underline; }
+
+/* ─── H2 / H3 ──────────────────────────────────────────── */
+.h2 { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; color: var(--teal); margin: 1.8rem 0 .7rem; padding-bottom: .3rem; border-bottom: 1px solid var(--line); }
+.h3 { font-size: .9rem; font-weight: 500; color: var(--navy); margin: 1.2rem 0 .4rem; letter-spacing: .02em; }
+
+/* ─── FOOTER ───────────────────────────────────────────── */
+footer { background: var(--navy); color: rgba(255,255,255,.55); text-align: center; padding: 2rem; font-size: .78rem; line-height: 1.9; }
+footer strong { color: var(--gold); }
+
+/* ─── ANIMATIONS ────────────────────────────────────────── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-inner > * { animation: fadeUp .55s ease both; }
+.hero-inner > *:nth-child(1){animation-delay:.05s}
+.hero-inner > *:nth-child(2){animation-delay:.15s}
+.hero-inner > *:nth-child(3){animation-delay:.25s}
+.hero-inner > *:nth-child(4){animation-delay:.35s}
+.hero-inner > *:nth-child(5){animation-delay:.45s}
+
+/* ─── RESPONSIVE NAV ───────────────────────────────────── */
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  nav { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Veille  ·  IA & Formation Santé</span>
+  <ul class="nav-links">
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#methodo">Méthodo</a></li>
+    <li><a href="#resultats">Résultats</a></li>
+    <li><a href="#analyse">Analyse</a></li>
+    <li><a href="#poursuivre">Poursuivre</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#biblio">Bibliographie</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Veille professionnelle · Ingénierie de la formation · Master 2 SEF</span>
+    <h1>L'intelligence artificielle dans la formation des professionnels de santé</h1>
+    <p class="hero-sub">Exploration d'un sujet d'actualité — Université de Normandie Caen · Juin 2026</p>
+    <div class="hero-meta">
+      <span class="meta-pill">🎓 Master 2 Sciences de l'Éducation et de la Formation</span>
+      <span class="meta-pill">🏛️ Université de Normandie Caen · 2025/26</span>
+      <span class="meta-pill">📅 Juin 2026</span>
+    </div>
+    <div class="ia-note">
+      <strong>Recours à l'IA générative</strong> — Claude (Anthropic) a été utilisé ponctuellement pour améliorer la rédaction de certains passages et générer le code du site web associé à ce travail. L'ensemble de la démarche de veille, le choix du sujet, l'analyse des sources, la définition personnelle et les idées développées sont le fruit d'une réflexion personnelle.
+    </div>
+  </div>
+</header>
+
+<!-- 01 INTRODUCTION -->
+<section id="intro">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <div class="sec-titles">
+        <p class="sec-label">Présentation du sujet</p>
+        <h2 class="sec-title">Introduction</h2>
+      </div>
+    </div>
+    <p class="prose">Le numérique transforme en profondeur les pratiques de formation dans de nombreux secteurs, et la santé n'y fait pas exception. L'intelligence artificielle occupe aujourd'hui une place croissante dans l'actualité de la formation des professionnels de santé : publications scientifiques en hausse, cadre réglementaire européen contraignant entré en vigueur en 2025, prises de position professionnelles et institutionnelles significatives.</p>
+    <p class="prose">Ce sujet m'intéresse à un titre personnel et professionnel direct. Chirurgienne-dentiste de formation, je travaille aujourd'hui comme formatrice en dentisterie numérique. L'IA s'intègre déjà dans les pratiques cliniques dentaires et dans les outils de formation du secteur. Cette veille s'inscrit également dans une réflexion sur les développements que pourrait envisager l'entreprise au sein de laquelle j'exerce.</p>
+    <p class="prose">Cette veille n'a pas pour objectif de répondre à une question de recherche ni d'évaluer l'efficacité de l'IA dans la formation. Elle vise à observer l'actualité du sujet à travers un ensemble de mots-clés, afin d'identifier les informations émergentes, les évolutions réglementaires, les innovations pédagogiques, les débats professionnels et les tendances qui traversent actuellement le champ de la formation des professionnels de santé.</p>
+  </div>
+</section>
+
+<!-- 02 MÉTHODOLOGIE -->
+<section id="methodo">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <div class="sec-titles">
+        <p class="sec-label">Démarche</p>
+        <h2 class="sec-title">Méthodologie de la veille</h2>
+      </div>
+    </div>
+
+    <p class="h2">Schéma du dispositif en 6 étapes</p>
+    <p class="prose">La démarche s'appuie sur le cadre en six étapes proposé par la BU de l'Université de Rennes 2 et par Étienne & Gutnik (2019).</p>
+    <div class="diagram">
+      <div class="diag-step"><div class="diag-head navy">1. Analyser ses besoins</div><div class="diag-body">Sujet : IA dans la formation des professionnels de santé · Finalité : observer l'actualité · Période : juin 2026</div></div>
+      <div class="diag-arrow">↓</div>
+      <div class="diag-step"><div class="diag-head teal1">2. Définir le périmètre — Mots-clés</div><div class="diag-body">FR : intelligence artificielle + formation + santé, IA + éducation dentaire<br>EN : artificial intelligence + dental education, AI + health professions education, AI Act + training</div></div>
+      <div class="diag-arrow">↓</div>
+      <div class="diag-step"><div class="diag-head teal2">3. Identifier les sources</div><div class="diag-body">PubMed, Cairn, HAL, Google Scholar, Légifrance, EUR-Lex, HAS, AINOA, Cap Métiers, LinkedIn</div></div>
+      <div class="diag-arrow">↓</div>
+      <div class="diag-step"><div class="diag-head teal3">4. Collecter — Pull &amp; Push</div><div class="diag-body">Pull : recherche manuelle sur PubMed, Cairn, HAL, Légifrance<br>Push : Google Alertes, alertes PubMed, flux RSS Cairn, newsletter Centre Inffo, LinkedIn hashtags</div></div>
+      <div class="diag-arrow">↓</div>
+      <div class="diag-step"><div class="diag-head teal4">5. Traiter et analyser</div><div class="diag-body">Lecture critique · Évaluation de la qualité méthodologique · Tri par catégorie · Repérage des signaux forts et faibles</div></div>
+      <div class="diag-arrow">↓</div>
+      <div class="diag-step"><div class="diag-head gold">6. Diffuser et partager</div><div class="diag-body">Scoop.it (curation) · Site web GitHub Pages · Document Word (rapport de synthèse)</div></div>
+    </div>
+
+    <p class="h2">Mots-clés retenus</p>
+    <p class="prose">Les mots-clés sont le point de départ de la veille. Ils délimitent le périmètre et permettent de capter l'actualité sans être guidé par une problématique préétablie.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mot-clé / Expression</th><th>Type</th><th>Bases utilisées</th><th>Justification</th></tr></thead>
+        <tbody>
+          <tr><td>intelligence artificielle + formation</td><td>Mot-clé FR</td><td>Cairn, Google Scholar</td><td>Publications francophones sur l'IA en formation professionnelle</td></tr>
+          <tr><td>IA + éducation médicale</td><td>Mot-clé FR</td><td>Cairn, Centre Inffo</td><td>Formation initiale et continue en santé</td></tr>
+          <tr><td>IA + dentisterie + formation</td><td>Mot-clé FR</td><td>HAL, Google Scholar</td><td>Ancrage dans le champ de la chirurgie dentaire</td></tr>
+          <tr><td>artificial intelligence + medical education</td><td>Mot-clé EN</td><td>PubMed, Google Scholar</td><td>Publications internationales à haut niveau de preuve</td></tr>
+          <tr><td>artificial intelligence + dental education</td><td>Mot-clé EN</td><td>PubMed, JMIR Medical Education</td><td>Spécifique à l'odontologie</td></tr>
+          <tr><td>AI Act + formation</td><td>Mot-clé FR/EN</td><td>Légifrance, EUR-Lex, Centre Inffo</td><td>Cadre réglementaire européen en vigueur</td></tr>
+          <tr><td>ingénierie pédagogique + IA</td><td>Mot-clé FR</td><td>Cairn, HAL</td><td>Lien usages IA et conception des dispositifs</td></tr>
+          <tr><td>AI + health professions education</td><td>Mot-clé EN</td><td>PubMed, Frontiers</td><td>Couverture large des professions de santé</td></tr>
+          <tr><td>#IAensanté #santenumérique #AIAct</td><td>Hashtag LinkedIn</td><td>LinkedIn</td><td>Actualité professionnelle en temps réel</td></tr>
+          <tr><td>#odontologie #dentaleducation</td><td>Hashtag LinkedIn</td><td>LinkedIn</td><td>Publications dentaires francophones et anglophones</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="h2">Outils Pull et Push</p>
+    <p class="prose">La logique pull désigne une démarche de recherche active. La logique push permet de recevoir l'information automatiquement sans recherche active — flux RSS, alertes, newsletters, et LinkedIn dont le fil d'actualité fonctionne sur le même principe.</p>
+    <div class="table-wrap">
+      <table class="dark">
+        <thead><tr><th>Type</th><th>Outil</th><th>Paramétrage</th><th>Accès</th></tr></thead>
+        <tbody>
+          <tr><td class="type-pull">PULL</td><td>PubMed / Google Scholar</td><td>Mots-clés EN : artificial intelligence dental education, AI health professions education</td><td><a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" class="src-link">pubmed.ncbi.nlm.nih.gov</a></td></tr>
+          <tr><td class="type-pull">PULL</td><td>Cairn</td><td>Mots-clés FR : IA + éducation médicale, intelligence artificielle + formation</td><td><a href="https://www.cairn.info" target="_blank" class="src-link">cairn.info</a></td></tr>
+          <tr><td class="type-pull">PULL</td><td>HAL</td><td>Thèses et publications françaises en accès libre</td><td><a href="https://hal.science" target="_blank" class="src-link">hal.science</a></td></tr>
+          <tr><td class="type-pull">PULL</td><td>Légifrance / EUR-Lex</td><td>Textes réglementaires officiels (AI Act, arrêtés)</td><td><a href="https://www.legifrance.gouv.fr" target="_blank" class="src-link">legifrance.gouv.fr</a></td></tr>
+          <tr><td class="type-push">PUSH</td><td>Google Alertes</td><td>IA formation santé, AI dental education, AI Act formation</td><td><a href="https://www.google.fr/alerts" target="_blank" class="src-link">google.fr/alerts</a></td></tr>
+          <tr><td class="type-push">PUSH</td><td>Alertes PubMed</td><td>artificial intelligence dental education, AI health professions education</td><td><a href="https://www.ncbi.nlm.nih.gov/account/" target="_blank" class="src-link">PubMed alertes</a></td></tr>
+          <tr><td class="type-push">PUSH</td><td>Flux RSS Cairn</td><td>Travail et Apprentissages, Distances et médiations des savoirs</td><td><a href="https://aide.cairn.info/article/144-comment-suivre-une-revue" target="_blank" class="src-link">Tuto suivi Cairn</a></td></tr>
+          <tr><td class="type-push">PUSH</td><td>Newsletter Centre Inffo</td><td>Actualité hebdomadaire de la formation professionnelle</td><td><a href="https://www.centre-inffo.fr" target="_blank" class="src-link">centre-inffo.fr</a></td></tr>
+          <tr><td class="type-push">PUSH</td><td>LinkedIn — Hashtags</td><td>#IAensanté #santenumérique #formationprofessionnelle #AIAct #odontologie</td><td><a href="https://www.linkedin.com/feed/hashtag/iasante/" target="_blank" class="src-link">linkedin.com</a></td></tr>
+          <tr><td class="type-push">PUSH</td><td>LinkedIn — Alertes</td><td>Alertes sur « intelligence artificielle formation santé »</td><td><a href="https://www.linkedin.com/search/results/content/?keywords=intelligence+artificielle+formation+sant%C3%A9" target="_blank" class="src-link">linkedin.com/search</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="h2">Encadré méthodologique</p>
+    <div class="table-wrap">
+      <table><thead><tr><th>Élément</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Période de veille</td><td>Juin 2026</td></tr>
+        <tr><td>Fréquence</td><td>Hebdomadaire</td></tr>
+        <tr><td>Sources actives</td><td>14 sources (4 pull + 6 push + curation)</td></tr>
+        <tr><td>Outils de collecte</td><td>Google Alertes, flux RSS Cairn, alertes PubMed, newsletter Centre Inffo, LinkedIn</td></tr>
+        <tr><td>Outil de curation</td><td>Scoop.it</td></tr>
+        <tr><td>Diffusion</td><td>Site web GitHub Pages + document Word</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RÉSULTATS -->
+<section id="resultats">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <div class="sec-titles">
+        <p class="sec-label">Sources avec liens</p>
+        <h2 class="sec-title">Actualité du sujet observée à travers la veille</h2>
+      </div>
+    </div>
+    <p class="prose">Les résultats présentés ici constituent une sélection représentative. Les recherches ont fait remonter un volume bien plus important de publications et de ressources : seules les sources les plus pertinentes, fiables et directement en lien avec le sujet ont été retenues. Cette sélection n'est donc pas exhaustive.</p>
+
+    <p class="h2">Tableau synthétique de veille</p>
+    <div class="table-wrap">
+      <table class="watch">
+        <thead><tr><th>Date</th><th>Source</th><th>Catégorie</th><th>Ce que la veille révèle</th><th>Impact pour la formation</th></tr></thead>
+        <tbody>
+          <tr><td>Fév. 2025</td><td>AI Act (UE)</td><td class="cat-reg">Réglementaire</td><td>Obligation de maîtrise de l'IA pour tout organisme déployant des systèmes IA</td><td>Adaptation urgente des programmes dès août 2026</td></tr>
+          <tr><td>Mars 2024</td><td>HAS</td><td class="cat-reg">Réglementaire</td><td>Nouveau chapitre simulation numérique et IA dans le guide de bonnes pratiques</td><td>Cadre normatif pour intégrer l'IA en simulation santé</td></tr>
+          <tr><td>2024</td><td>Qualiopi</td><td class="cat-reg">Réglementaire</td><td>Indicateur 25 : obligation de veille sur les innovations pédagogiques</td><td>La veille IA doit être exploitée et tracée</td></tr>
+          <tr><td>2025</td><td>Hallquist et al.</td><td class="cat-sci">Scientifique</td><td>Revues systématiques en hausse sur l'IA en éducation médicale depuis 2023</td><td>Nouvelles modalités d'évaluation formative et de génération de contenus</td></tr>
+          <tr><td>2025</td><td>Alhajj et al.</td><td class="cat-sci">Scientifique</td><td>L'IA crée des environnements personnalisés qui améliorent les résultats</td><td>Vers une individualisation des parcours</td></tr>
+          <tr><td>2025</td><td>Baxmann & Kárpáti</td><td class="cat-sci">Scientifique dentaire</td><td>IA générative en dentisterie : potentiel confirmé, enjeux éthiques identifiés</td><td>Formation des formateurs à l'évaluation critique des contenus IA</td></tr>
+          <tr><td>2026</td><td>Uribe et al.</td><td class="cat-sci">Scientifique dentaire</td><td>Applications prometteuses en précision procédurale et évaluation</td><td>Conception possible de dispositifs IA pour la formation dentaire</td></tr>
+          <tr><td>2024</td><td>Claman & Sezgin</td><td class="cat-sci">Scientifique dentaire</td><td>LLM en éducation dentaire : opportunités et défis</td><td>Nécessité de former les formateurs à l'ingénierie de prompts</td></tr>
+          <tr><td>2024</td><td>Saravia-Rojas et al.</td><td class="cat-sci">Scientifique dentaire</td><td>Premiers retours sur ChatGPT chez des étudiants en chirurgie dentaire</td><td>Apports réels mais dépendance et perte d'esprit critique identifiés</td></tr>
+          <tr><td>2023</td><td>Schwendicke et al.</td><td class="cat-ped">Pédagogique</td><td>Curriculum de référence pour l'enseignement de l'IA en odontologie</td><td>Structuration curriculaire de l'IA dans les formations dentaires</td></tr>
+          <tr><td>2026</td><td>Hassanein et al.</td><td class="cat-ped">Pédagogique dentaire</td><td>Calibrage des LLM avec experts humains pour l'évaluation en éducation dentaire</td><td>Dispositifs d'évaluation assistée par IA en odontologie</td></tr>
+          <tr><td>2025</td><td>Morin et al.</td><td class="cat-ped">Pédagogique</td><td>IA dans la simulation en santé : lacunes sur la formation des formateurs</td><td>Priorité à la formation des formateurs au débriefing IA</td></tr>
+          <tr><td>Mars 2026</td><td>Cap Métiers</td><td class="cat-pro">Professionnel</td><td>Débats actifs sur l'IA au travail, risques de slop IA</td><td>Formation des formateurs à la littératie IA</td></tr>
+          <tr><td>2023-2026</td><td>AINOA</td><td class="cat-pro">Professionnel</td><td>Recommandations françaises sur les usages responsables de l'IA</td><td>Cinq principes opérationnels pour une intégration éthique</td></tr>
+          <tr><td>2025-2026</td><td>LinkedIn (ANS, HDS)</td><td class="cat-pro">Professionnel</td><td>Actualité institutionnelle sur l'IA en santé via hashtags et pages</td><td>Veille en temps réel avant publication scientifique</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="h2">Tendances observées à partir des mots-clés</p>
+    <p class="prose">Premièrement, les mots-clés en anglais font remonter un volume croissant de publications scientifiques depuis 2023. Des revues comme BMC Medical Education et JMIR Medical Education publient régulièrement des revues systématiques et des scoping reviews, témoignant d'une reconnaissance croissante de ce champ par la communauté académique internationale.</p>
+    <p class="prose">Deuxièmement, les mots-clés réglementaires mettent en évidence une forte présence des questions normatives depuis l'entrée en vigueur de l'AI Act en février 2025. L'obligation de maîtrise de l'IA et les sanctions prévues à partir d'août 2026 constituent le signal le plus urgent identifié par cette veille.</p>
+    <p class="prose">Troisièmement, les mots-clés professionnels font remonter de nombreuses prises de position d'acteurs de la formation (AINOA, Cap Métiers, HAS), témoignant d'un passage progressif d'une phase d'expérimentation à une phase d'appropriation.</p>
+    <p class="prose">Quatrièmement, plusieurs publications font émerger des signaux faibles autour du risque de dépendance des apprenants (Saravia-Rojas et al., 2024 ; Baxmann & Kárpáti, 2025), des enjeux éthiques liés aux biais des contenus générés, et de la nécessité de développer la littératie IA des formateurs (AINOA, 2023).</p>
+
+    <p class="h2">3.1  Veille réglementaire et institutionnelle</p>
+    <div class="src-list">
+      <div class="src-card"><span class="src-badge">AI Act 2025</span><div class="src-content"><strong>Règlement (UE) 2024/1689 — Article 4 en vigueur depuis le 2 février 2025</strong><p>Obligation de maîtrise de l'IA pour tout personnel utilisant des systèmes d'IA. Sanctions applicables à partir du 2 août 2026. Signal réglementaire fort pour tous les organismes de formation en santé.</p><a href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32024R1689" target="_blank" class="src-link">EUR-Lex  AI Act complet</a></div></div>
+      <div class="src-card"><span class="src-badge">Qualiopi 2024</span><div class="src-content"><strong>Référentiel national qualité — Critère 6, indicateurs 23 à 25 (8 janvier 2024)</strong><p>L'indicateur 25 impose une veille sur les innovations pédagogiques et technologiques et son exploitation. Signal institutionnel fort pour les organismes certifiés.</p><a href="https://travail-emploi.gouv.fr/referentiel-national-qualite-guide-de-lecture-qualiopi" target="_blank" class="src-link">travail-emploi.gouv.fr  Guide Qualiopi</a></div></div>
+      <div class="src-card"><span class="src-badge">HAS 2024</span><div class="src-content"><strong>Guide de bonnes pratiques en matière de simulation en santé (mars 2024)</strong><p>Premier guide français à consacrer un chapitre à la simulation numérique et l'IA : cahiers des charges, chatbots pédagogiques, scénarios adaptatifs.</p><a href="https://www.has-sante.fr/jcms/p_3505883/fr/bonnes-pratiques-en-matiere-de-simulation-en-sante" target="_blank" class="src-link">has-sante.fr  Guide complet</a></div></div>
+      <div class="src-card"><span class="src-badge">DNS 2023-2027</span><div class="src-content"><strong>Feuille de route du numérique en santé — Délégation ministérielle</strong><p>L'IA identifiée comme technologie stratégique. Objectif : former 500 000 étudiants en santé au numérique d'ici 2027.</p><a href="https://esante.gouv.fr" target="_blank" class="src-link">esante.gouv.fr</a></div></div>
+    </div>
+
+    <p class="h2">3.2  Veille scientifique et technologique</p>
+    <p class="prose">Les recherches menées avec les mots-clés anglais font apparaître une augmentation importante des revues systématiques depuis 2023. En odontologie, le volume de publications a clairement augmenté entre 2024 et 2026.</p>
+    <div class="src-list">
+      <div class="src-card"><span class="src-badge teal">Hallquist 2025</span><div class="src-content"><strong>Applications of Artificial Intelligence in Medical Education: A Systematic Review. Cureus, 17(3), e79878.</strong><p>Signal observé : multiplication des revues systématiques. Usages identifiés : génération de cas cliniques, automatisation de l'évaluation formative.</p><a href="https://doi.org/10.7759/cureus.79878" target="_blank" class="src-link">doi.org/10.7759/cureus.79878</a></div></div>
+      <div class="src-card"><span class="src-badge teal">Alhajj 2025</span><div class="src-content"><strong>Advancements in artificial intelligence transforming medical education. BMC Medical Education.</strong><p>Signal observé : consensus émergent sur l'apport de l'IA pour personnaliser les parcours. 67 études analysées (2010-2024).</p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12351741/" target="_blank" class="src-link">PMC12351741</a></div></div>
+      <div class="src-card"><span class="src-badge teal">Uribe 2026</span><div class="src-content"><strong>AI for teaching, training, and assessment in dental education. Frontiers in Medicine.</strong><p>Signal observé : forte croissance des publications sur l'IA en éducation dentaire. Applications : précision procédurale, cohérence diagnostique, évaluation.</p><a href="https://doi.org/10.3389/fmed.2026.1775853" target="_blank" class="src-link">doi.org/10.3389/fmed.2026.1775853</a></div></div>
+      <div class="src-card"><span class="src-badge teal">Baxmann 2025</span><div class="src-content"><strong>Potentials and challenges of generative AI in dental and orthodontic education. BMC Oral Health, 25, 905.</strong><p>Signal observé : tension entre le potentiel de l'IA générative en dentisterie et les enjeux éthiques identifiés.</p><a href="https://doi.org/10.1186/s12903-025-06070-7" target="_blank" class="src-link">doi.org/10.1186/s12903-025-06070-7</a></div></div>
+      <div class="src-card"><span class="src-badge teal">Claman 2024</span><div class="src-content"><strong>AI in Dental Education: Opportunities and Challenges of LLMs. JMIR Medical Education, 10, e52346.</strong><p>Signal observé : émergence des grands modèles de langage comme objet de débat spécifique en éducation dentaire.</p><a href="https://doi.org/10.2196/52346" target="_blank" class="src-link">doi.org/10.2196/52346</a></div></div>
+      <div class="src-card"><span class="src-badge teal">Saravia-Rojas 2024</span><div class="src-content"><strong>ChatGPT as a disruptive didactic strategy in dental education. Journal of Dental Education.</strong><p>Signal observé : premiers retours empiriques sur ChatGPT chez des étudiants en chirurgie dentaire. Apports réels mais risques de dépendance identifiés.</p><a href="https://doi.org/10.1002/jdd.13485" target="_blank" class="src-link">doi.org/10.1002/jdd.13485</a></div></div>
+      <div class="src-card"><span class="src-badge teal">Barbe & Boboc 2022</span><div class="src-content"><strong>La réalité virtuelle dans la formation professionnelle à la lumière des environnements capacitants. Travail et Apprentissages, 23, 116-129.</strong><p>Signal théorique de référence : un outil numérique ne développe le pouvoir d'agir que si le dispositif intègre analyse réflexive et débriefing. Cadre applicable à l'IA en formation.</p><a href="https://www.cairn.info/revue-travail-et-apprentissages-2022-1-page-116.htm" target="_blank" class="src-link">cairn.info</a></div></div>
+    </div>
+
+    <p class="h2">3.3  Veille sectorielle et professionnelle</p>
+    <div class="src-list">
+      <div class="src-card"><span class="src-badge gold">Cap Métiers 2026</span><div class="src-content"><strong>5es Journées Vincent Merle — Cap Métiers Nouvelle-Aquitaine, mars 2026</strong><p>Quatre narratifs de l'IA au travail (Ferguson/LaborIA), question du « slop IA » (Bruillard), recommandations AINOA. Signal professionnel fort sur les débats en cours.</p><a href="https://www.cap-metiers.fr/engagements-missions-gouvernance/" target="_blank" class="src-link">cap-metiers.fr</a></div></div>
+      <div class="src-card"><span class="src-badge gold">AINOA 2023-2026</span><div class="src-content"><strong>AINOA — Association pour l'Innovation dans les Organismes de Formation</strong><p>Fiches pratiques sur l'intégration de l'IA dans les LMS, recommandations sur les usages responsables, implémentation de l'IA. Signal professionnel opérationnel.</p><a href="https://ainoa-asso.fr" target="_blank" class="src-link">ainoa-asso.fr</a></div></div>
+      <div class="src-card"><span class="src-badge gold">LinkedIn — ANS</span><div class="src-content"><strong>Agence du Numérique en Santé — Page LinkedIn</strong><p>Publie régulièrement sur la formation numérique en santé, les programmes Ségur, l'IA en établissements de santé. Source institutionnelle fiable.</p><a href="https://fr.linkedin.com/company/agence-du-numerique-en-sante" target="_blank" class="src-link">linkedin.com/company/agence-du-numerique-en-sante</a></div></div>
+      <div class="src-card"><span class="src-badge gold">LinkedIn — HDS</span><div class="src-content"><strong>Health Data Hub — Page LinkedIn</strong><p>Publie sur la formation à l'IA en santé, les modules pédagogiques liés aux données de santé.</p><a href="https://fr.linkedin.com/company/health-data-hub" target="_blank" class="src-link">linkedin.com/company/health-data-hub</a></div></div>
+      <div class="src-card"><span class="src-badge gold">Body Interact</span><div class="src-content"><strong>Body Interact — Simulateur IA de cas cliniques</strong><p>Utilisé dans 130 pays. Signal sectoriel sur la maturité des outils IA de simulation clinique disponibles sur le marché.</p><a href="https://bodyinteract.com" target="_blank" class="src-link">bodyinteract.com</a></div></div>
+    </div>
+
+    <p class="h2">3.4  Veille pédagogique</p>
+    <div class="src-list">
+      <div class="src-card"><span class="src-badge green">Schwendicke 2023</span><div class="src-content"><strong>Artificial intelligence for oral and dental healthcare: core education curriculum. Journal of Dentistry, 128, 104363.</strong><p>Curriculum de référence pour l'enseignement de l'IA dans les études dentaires. Signal pédagogique clé sur la structuration curriculaire en odontologie.</p><a href="https://doi.org/10.1016/j.jdent.2022.104363" target="_blank" class="src-link">doi.org/10.1016/j.jdent.2022.104363</a></div></div>
+      <div class="src-card"><span class="src-badge green">Hassanein 2026</span><div class="src-content"><strong>Calibration of AI LLMs with human experts for grading clinical responses in dental education. BMC Oral Health.</strong><p>Étude sur le calibrage des LLM avec des experts humains pour l'évaluation en éducation dentaire. Signal pédagogique direct sur la conception de dispositifs d'évaluation IA.</p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12896245/" target="_blank" class="src-link">doi.org/10.1186/s12903-026-07665-4</a></div></div>
+      <div class="src-card"><span class="src-badge green">Morin 2025</span><div class="src-content"><strong>AI integration in simulation-based health education: a scoping review. Clinical Simulation in Nursing.</strong><p>Scoping review sur 18 études (2021-2025). Identifie des lacunes sur la formation des formateurs et la simulation interprofessionnelle.</p><a href="https://www.sciencedirect.com/science/article/abs/pii/S1876139925001744" target="_blank" class="src-link">Clinical Simulation in Nursing</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 ANALYSE -->
+<section id="analyse">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <div class="sec-titles">
+        <p class="sec-label">Constats issus des sources collectées</p>
+        <h2 class="sec-title">Analyse des résultats et signaux identifiés par la veille</h2>
+      </div>
+    </div>
+
+    <p class="h2">Signaux forts et signaux faibles</p>
+    <div class="signals">
+      <div class="signal-box">
+        <div class="signal-head fort">Signaux forts — Ce qui émerge clairement</div>
+        <ul class="signal-items">
+          <li>Cadre réglementaire contraignant : l'AI Act impose des obligations dès février 2025, sanctions dès août 2026</li>
+          <li>Littérature scientifique en forte croissance sur l'IA en éducation médicale et dentaire depuis 2023</li>
+          <li>Usages établis et institutionnalisés : génération de cas cliniques, chatbots, simulateurs (HAS 2024)</li>
+          <li>Débat professionnel actif sur les usages responsables (AINOA, Cap Métiers 2026)</li>
+        </ul>
+      </div>
+      <div class="signal-box">
+        <div class="signal-head faible">Signaux faibles — Questions ouvertes</div>
+        <ul class="signal-items">
+          <li>Le transfert vers la pratique clinique réelle reste rarement évalué dans les études</li>
+          <li>Risque de dépendance des apprenants et perte d'esprit critique (Saravia-Rojas 2024 ; Baxmann 2025)</li>
+          <li>Formation des formateurs à la conception de dispositifs IA : peu traitée malgré son urgence</li>
+          <li>Littératie IA des formateurs : besoin identifié mais dispositifs encore insuffisants (AINOA 2023)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="h2">Implications pour l'ingénierie de la formation</p>
+    <p class="prose">Les résultats de cette veille montrent que l'intégration de l'IA touche chacune des étapes de l'ingénierie de la formation.</p>
+    <table class="impl-table">
+      <thead><tr><th>Étape</th><th>Ce que la veille révèle</th></tr></thead>
+      <tbody>
+        <tr><td>Analyse des besoins</td><td>L'AI Act introduit de nouveaux besoins de formation en littératie IA, rendus normatifs dès août 2026.</td></tr>
+        <tr><td>Conception pédagogique</td><td>La scénarisation des activités doit intégrer les outils IA là où ils apportent une réelle valeur ajoutée et éviter la dépendance des apprenants.</td></tr>
+        <tr><td>Posture tutorale</td><td>Le formateur passe d'une posture de transmetteur à une posture d'architecte de situations d'apprentissage et de superviseur critique des productions IA.</td></tr>
+        <tr><td>Évaluation</td><td>Les modalités doivent évoluer pour distinguer les productions authentiques des productions assistées par IA.</td></tr>
+        <tr><td>Amélioration continue</td><td>La vitesse d'évolution des outils IA rend la veille professionnelle continue indispensable pour maintenir la cohérence des dispositifs.</td></tr>
+      </tbody>
+    </table>
+
+    <blockquote>Barbe et Boboc (2022), dont les travaux portent sur la réalité virtuelle en formation professionnelle — un outil numérique qui partage avec l'IA les mêmes enjeux de conception pédagogique — rappellent que la technologie seule ne suffit pas à développer les compétences. Leur approche par les environnements capacitants invite à replacer le travail du formateur au centre, en questionnant les conditions organisationnelles et humaines qui permettent à un outil numérique de produire de réels effets sur les apprentissages.</blockquote>
+  </div>
+</section>
+
+<!-- 05 POURSUIVRE -->
+<section id="poursuivre">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <div class="sec-titles">
+        <p class="sec-label">Actions concrètes</p>
+        <h2 class="sec-title">Activités pour poursuivre la veille</h2>
+      </div>
+    </div>
+    <p class="prose">Dix ressources directement activables pour maintenir une veille régulière sur l'IA en formation de santé.</p>
+    <div class="table-wrap">
+      <table class="poursuivre-table dark">
+        <thead><tr><th>Ressource</th><th>Description</th><th>Accès</th></tr></thead>
+        <tbody>
+          <tr><td>Alertes PubMed</td><td>Alertes permanentes sur « artificial intelligence dental education » et « AI health professions education »</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/?term=artificial+intelligence+dental+education" target="_blank" class="src-link">PubMed</a></td></tr>
+          <tr><td>JMIR Medical Education</td><td>Revue internationale en accès libre, très active sur l'IA en éducation médicale et dentaire</td><td><a href="https://mededu.jmir.org/themes/1303-artificial-intelligence-ai-in-medical-education/2025" target="_blank" class="src-link">mededu.jmir.org</a></td></tr>
+          <tr><td>European Journal of Dental Education</td><td>Revue spécialisée en éducation dentaire, régulièrement citée sur l'IA en odontologie</td><td><a href="https://onlinelibrary.wiley.com/journal/16000579" target="_blank" class="src-link">Wiley</a></td></tr>
+          <tr><td>Frontiers in Dental Health</td><td>Revue en accès libre active sur les applications IA en santé dentaire depuis 2025</td><td><a href="https://www.frontiersin.org/journals/dental-health" target="_blank" class="src-link">frontiersin.org</a></td></tr>
+          <tr><td>AINOA</td><td>Association française de référence sur l'IA dans les organismes de formation</td><td><a href="https://ainoa-asso.fr" target="_blank" class="src-link">ainoa-asso.fr</a></td></tr>
+          <tr><td>Centre Inffo</td><td>Veille réglementaire et professionnelle sur la formation en France. Newsletter hebdomadaire</td><td><a href="https://www.centre-inffo.fr" target="_blank" class="src-link">centre-inffo.fr</a></td></tr>
+          <tr><td>CNIL</td><td>Lignes directrices sur l'IA et les données personnelles, pertinentes pour la formation en santé</td><td><a href="https://www.cnil.fr/fr/intelligence-artificielle" target="_blank" class="src-link">cnil.fr</a></td></tr>
+          <tr><td>Journées Vincent Merle</td><td>Journées biennales de référence sur l'innovation en formation. Surveiller la prochaine édition</td><td><a href="https://www.cap-metiers.fr" target="_blank" class="src-link">cap-metiers.fr</a></td></tr>
+          <tr><td>EHESP</td><td>L'École des Hautes Études en Santé Publique propose des formations continues et une veille fiable</td><td><a href="https://formation-continue.ehesp.fr/formation/potentiel-de-lia-en-etablissement-de-sante-decryptage-et-applications" target="_blank" class="src-link">ehesp.fr</a></td></tr>
+          <tr><td>Google Scholar Alertes</td><td>Alertes sur Journal of Dental Education pour capter les nouvelles publications</td><td><a href="https://scholar.google.com/scholar_alerts" target="_blank" class="src-link">scholar.google.com</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 CONCLUSION -->
+<section id="conclusion">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <div class="sec-titles">
+        <p class="sec-label">Synthèse et définition</p>
+        <h2 class="sec-title">Conclusion et définition personnelle de la veille</h2>
+      </div>
+    </div>
+    <p class="prose">Cette veille a permis d'observer l'émergence progressive d'un nouvel espace de réflexion situé à l'intersection de l'intelligence artificielle, de la formation et de la santé. L'analyse des informations remontées par les mots-clés a mis en évidence des évolutions scientifiques, réglementaires, professionnelles et pédagogiques qui contribuent aujourd'hui à structurer ce champ.</p>
+    <p class="prose">En tant que chirurgienne-dentiste et formatrice en dentisterie numérique, cette veille m'a permis de saisir ce qui se joue actuellement dans mon champ professionnel et d'identifier des ressources et des débats que je ne connaissais pas. Elle a confirmé l'urgence de la question de la littératie IA pour les formateurs en santé.</p>
+    <p class="prose">Ce travail a enfin été l'occasion d'une expérience méthodologique intéressante. Lors d'une séance, j'avais été intriguée par la démarche d'un collègue qui avait mis en ligne ses résultats de veille sous forme de site web interactif. J'ai choisi de décliner également ce document en site web, ce format me semblant cohérent avec la vocation de la veille : circuler, être partagée et inviter à explorer les sources par soi-même.</p>
+
+    <div class="definition-box">
+      <p>La veille est, selon moi, une forme d'attention organisée portée à l'actualité d'un domaine professionnel. Elle consiste à observer, à trier, à questionner la fiabilité de ce qu'on trouve, et à repérer ce qui fait signal pour en nourrir sa pratique. Dans le champ de l'ingénierie de la formation, elle n'est pas un exercice ponctuel mais une compétence à entretenir en continu, d'autant plus nécessaire que les évolutions technologiques, réglementaires et pédagogiques s'accélèrent. Ce que cette expérience m'a surtout appris, c'est que la veille transforme celui qui la pratique : elle oblige à distinguer l'information probante du discours promotionnel, et elle nourrit une posture critique indispensable dans un domaine aussi mouvant que l'intelligence artificielle en formation de santé.</p>
+      <div class="def-pillars">
+        <div class="pillar"><h4>Une veille qui part de mots-clés</h4><p>La définition précise des mots-clés est l'étape fondatrice. Elle détermine ce que la veille peut et ne peut pas capturer.</p></div>
+        <div class="pillar"><h4>Une veille qui interroge</h4><p>Face à l'abondance des discours marketing sur l'IA, évaluer la qualité d'une étude et distinguer les signaux forts des faibles est une compétence à part entière.</p></div>
+        <div class="pillar"><h4>Une veille qui nourrit la pratique</h4><p>Ce travail a directement enrichi ma réflexion professionnelle et stratégique en tant que formatrice en odontologie.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIBLIOGRAPHIE -->
+<section id="biblio">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num" style="font-size:1.8rem;opacity:.2">APA</span>
+      <div class="sec-titles">
+        <p class="sec-label">Références complètes</p>
+        <h2 class="sec-title">Bibliographie</h2>
+      </div>
+    </div>
+    <p class="prose" style="font-size:.82rem;margin-bottom:1rem;">Classement par ordre alphabétique du premier auteur — Norme APA 7</p>
+    <div class="bib-list">
+      <div class="bib-item">Alhajj, M. N. et al. (2025). Advancements in artificial intelligence transforming medical education: A comprehensive overview. <em>BMC Medical Education.</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12351741/" target="_blank">PMC12351741</a></div>
+      <div class="bib-item">Barbe, F. & Boboc, A. (2022). La réalité virtuelle dans la formation professionnelle à la lumière des environnements capacitants. <em>Travail et Apprentissages, 23,</em> 116–129. <a href="https://www.cairn.info/revue-travail-et-apprentissages-2022-1-page-116.htm" target="_blank">cairn.info</a></div>
+      <div class="bib-item">Baxmann, M. & Kárpáti, K. (2025). Potentials and challenges of generative AI in dental and orthodontic education: A systematic review. <em>BMC Oral Health, 25,</em> 905. <a href="https://doi.org/10.1186/s12903-025-06070-7" target="_blank">doi.org/10.1186/s12903-025-06070-7</a></div>
+      <div class="bib-item">Bibliothèque universitaire de l'Université de Rennes 2. (2026). <em>Les étapes de la veille informationnelle.</em> <a href="https://tutos.bu.univ-rennes2.fr/c.php?g=688574&p=4928287" target="_blank">tutos.bu.univ-rennes2.fr</a></div>
+      <div class="bib-item">Claman, D. & Sezgin, E. (2024). AI in dental education: Opportunities and challenges of large language models. <em>JMIR Medical Education, 10,</em> e52346. <a href="https://doi.org/10.2196/52346" target="_blank">doi.org/10.2196/52346</a></div>
+      <div class="bib-item">Étienne, S. & Gutnik, F. (2019). Plan d'action. Organiser sa veille. Dans <em>Pro en Formation</em> (pp. 20–23). Vuibert. <a href="https://ecampus-vert.unicaen.fr/pluginfile.php/595479/mod_resource/content/1/VUIB_ETIEN_2019_01_0020-3.pdf" target="_blank">Extraits</a></div>
+      <div class="bib-item">Hallquist, E. et al. (2025). Applications of artificial intelligence in medical education: A systematic review. <em>Cureus, 17</em>(3), e79878. <a href="https://doi.org/10.7759/cureus.79878" target="_blank">doi.org/10.7759/cureus.79878</a></div>
+      <div class="bib-item">Hassanein, F. E. A. et al. (2026). Calibration of AI large language models with human subject matter experts for grading of clinical short-answer responses in dental education. <em>BMC Oral Health.</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12896245/" target="_blank">doi.org/10.1186/s12903-026-07665-4</a></div>
+      <div class="bib-item">Ministère du Travail. (2024). <em>Référentiel national qualité Qualiopi — Critère 6, indicateurs 23–25 (version du 8 janvier 2024).</em> <a href="https://travail-emploi.gouv.fr/referentiel-national-qualite-guide-de-lecture-qualiopi" target="_blank">travail-emploi.gouv.fr</a></div>
+      <div class="bib-item">Morin, K. et al. (2025). AI integration in simulation-based health education: A scoping review. <em>Clinical Simulation in Nursing.</em> <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876139925001744" target="_blank">sciencedirect.com</a></div>
+      <div class="bib-item">Parlement européen et Conseil de l'Union européenne. (2024). <em>Règlement (UE) 2024/1689 du 13 juin 2024 — Loi sur l'intelligence artificielle (AI Act).</em> <a href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32024R1689" target="_blank">EUR-Lex</a></div>
+      <div class="bib-item">Saravia-Rojas, M. A. et al. (2024). Artificial intelligence: ChatGPT as a disruptive didactic strategy in dental education. <em>Journal of Dental Education.</em> <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jdd.13485" target="_blank">doi.org/10.1002/jdd.13485</a></div>
+      <div class="bib-item">Schwendicke, F. et al. (2023). Artificial intelligence for oral and dental healthcare: Core education curriculum. <em>Journal of Dentistry, 128,</em> 104363. <a href="https://doi.org/10.1016/j.jdent.2022.104363" target="_blank">doi.org/10.1016/j.jdent.2022.104363</a></div>
+      <div class="bib-item">Uribe, S. E. et al. (2026). Artificial intelligence for teaching, training, and assessment in dental education: A domain-based scoping review. <em>Frontiers in Medicine.</em> <a href="https://doi.org/10.3389/fmed.2026.1775853" target="_blank">doi.org/10.3389/fmed.2026.1775853</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>L'intelligence artificielle dans la formation des professionnels de santé</strong><br>
+  Veille professionnelle en ingénierie de la formation · Master 2 SEF<br>
+  Université de Normandie Caen · Juin 2026
+</footer>
+
+</body>
+</html>
